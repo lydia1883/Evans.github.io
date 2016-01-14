@@ -1,0 +1,1453 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "mixin","ver";
+
+body,html{
+  height:100%;
+  overflow:hidden;
+}
+a{text-decoration: none;}
+body{
+  background-color:$Bg;
+  @include Linear-gradient( top right,#FFFFCC,#FF3366 );
+  font:{
+    size:12px;
+    family: "微软雅黑";
+  }
+}
+
+.clearfix:after{
+   content:".";
+   height:0;
+   clear:both;
+   visibility: hidden;
+  display: block;
+}
+  .clear{
+    zoom:1;
+  }
+
+@font-face {font-family: 'iconfont';
+  src: url('../icon/iconfont.eot'); /* IE9*/
+  src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../icon/iconfont.woff') format('woff'), /* chrome、firefox */
+  url('../icon/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('../icon/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont{
+  font-family:"iconfont" !important;
+  font-size:16px;font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;}
+
+.pages{position:absolute;z-index:500;}
+.pages li {
+  float:left;
+  @include length(40px,40px);
+  border: 4px solid #fff;
+  border-radius: 50%;
+  margin: 10px;
+}
+.pages li.active {
+  background: #5BEFBB;
+}
+
+.left{
+  float:left;
+  width:25%;
+}
+.vertical{position:absolute;right:10px;top:50%;margin-top:-150px;}
+.horizontal{position:absolute;bottom:10px;left:50%;margin-left:-150px;}
+.vertical li{
+  float:none;
+}
+.horizontal li{
+  float:left;
+
+}
+
+
+#container,.sections{
+  position: relative;
+}
+#container,.sections,.section{
+  height:100%;
+}
+.sections{
+  width:100%;
+  @include transition(all 3s linear);
+}
+/*头部动画*/
+@keyframes move_head{
+  from{
+   // @include Transform-rotate (-30deg);
+    @include opacity(20);
+  }
+  to{
+    //@include Transform-rotate (0deg);
+    @include opacity(100);
+  }
+}
+
+/*标题动画*/
+@keyframes move_hTitle {
+  from {
+    margin-left:0;
+  }
+  to{
+    margin-left:15%;
+  }
+}
+
+/*标题动画*/
+@keyframes move_hTitle_last {
+  from {
+    margin-right:0;
+  }
+  to{
+    margin-right:15%;
+  }
+}
+/*首页边框动画*/
+@keyframes move_Border{
+  from {
+     width:0;
+  }
+  to{
+    width:100%;
+  }
+}
+
+/*第一个区块*/
+#section_0 {
+  background: $section-bgc;
+  @include opacity(100);
+  @include Linear-gradient(top right,#CCFFCC ,#CCFFFF);
+  position: relative;
+  /*区块内容器*/
+  .section_wrap{
+  width:100%;  height:100%;
+    @include position( relative ,0,0 );
+  }
+
+  /*头像*/
+  figure{
+     @include position(absolute ,50% ,10% );
+      margin-left:-10em;
+     @include length(20em,20em);
+      img{
+        display: block;
+        @include length(15em,15em);
+        border-radius: 50%;
+        margin:0 auto;
+        border:8px solid #FFFFCC;
+        @include transition( all 1s );
+        &:hover{
+          border-radius:0;
+        }
+      }
+    /*描述*/
+    figcaption{
+      display: block;
+      margin:0 auto;
+
+      @include length(20em,5em);
+      h1{
+        font-size:3em;
+        text-align: center;
+        line-height:2.5em;
+        font-weight:700;
+        color: #333;
+        text-shadow:1px 1px 1px #fcc;
+        @include opacity(80);
+        @include transition( all 1s );
+        &:hover{
+          color:#660066;
+          @include opacity(100);
+        }
+      }
+    }
+  }
+  /*figure结束*/
+  /*section开始*/
+  section{
+      width:100%;
+      position:absolute;
+      top:45%;
+      &:hover{
+         h2{
+           color:navy;
+           @include translateX( 10% );
+        }
+        h2:last-child{
+          color:navy;
+          @include translateX( -10% );
+        }
+      }
+    /*标题开始*/
+      h2{
+        font:{
+          size:2.5em;
+          weight:bold;
+          family: Cambria;
+        }
+        text-shadow:2px 2px 2px rgba( 0,0,0,0.3 );
+        text-align: left;
+        margin-left:5em;
+        line-height:3em;
+        color: #FFFFCC;
+        @include transition(all 1s);
+      }
+      h2:last-child{
+        text-align: right;
+        margin-right:5em;
+      }
+
+    /*标题动画*/
+     h2.move_hTitle{
+       @include animation(2s move_hTitle ease-in);
+       margin-left:15%;
+     }
+    h2.move_hTitle_last{
+      @include animation(2s move_hTitle_last ease-in);
+      margin-right:15%;
+    }
+  }
+
+
+  /*底部联系方式*/
+  #hr{
+    @include length(100%,4px);
+    background:#FFFFCC;
+    @include animation(2s move_Border ease-in);
+  }
+
+  /*联系方式主体内容*/
+  footer{
+    position:absolute;
+    left:50%;
+    bottom:10%;
+    @include length(40%,20%);
+    margin-left:-20%;
+
+    h3{
+      color:#000;
+      height:2em;
+      font:{
+        weight:700;
+        size:2em;
+      }
+    }
+    ul{
+      height:100%;
+        li{
+          @include length(20%,100%);
+          float:left;
+          @include transition(all 1s);
+          &:hover{
+            @include scale(1.5);
+            a{color:#660066;}
+          }
+            a{
+                display: block;
+                text-align: center;
+                line-height:2.5em;
+                color: #FF3366;
+                  font:{
+                    size:2.5em;
+                  }
+            }
+        }
+    }
+  }
+}
+/*第一页响应式*/
+@media all and (min-width:768px) and (max-width:970px) {
+  /*标题开始*/
+  #section_0 section h2{
+    font:{
+      size:2em;
+      family: "微软雅黑";
+    }
+  }
+
+}
+
+@media all and (min-width:568px) and (max-width:768px) {
+  #section_0 section h2{
+    font:{
+      size:1.8em;
+      family: "微软雅黑";
+    }
+  }
+
+  /*分页按钮*/
+
+  .pages li {
+    @include length(30px,30px);
+    margin:8px;
+  }
+  .vertical{margin-top:-135px;}
+  .horizontal{margin-left:-135px;}
+
+}
+@media all and (max-width:568px) {
+  /*分页按钮*/
+
+  .pages li {
+    @include length(16px,16px);
+    margin:4px;
+    border: 2px solid #fff;
+  }
+  .vertical{margin-top:-70px;}
+  .horizontal{margin-left:-70px;}
+
+
+  #section_0 figure{
+    @include length(15em,15em);
+    margin-left:-7.5em;
+    img{
+      @include length(10em,10em);
+    }
+    figcaption{
+        width:100%;
+        h1{
+          font-size:2em; ;
+        }
+    }
+  }
+  #section_0 section{
+    top:50%;
+  }
+  #section_0 section h2{
+    margin:2em;
+    line-height:1.5em;
+    font:{
+      size:1.5em;
+      family: "微软雅黑";
+    }
+  }
+  #section_0{
+      footer{display:none;}
+  }
+
+}
+
+
+/*第二页开始*/
+#section_1{
+  background: $section-bgc;
+  @include Linear-gradient( top right,#FFCCFF,#CCFFCC );
+  /*标题部分*/
+  h1{
+    height:4em;
+    color: blueviolet;
+    text-align: center;
+    text-shadow:5px 5px 5px #ccc;
+    font:{
+      weight:700;
+      size:4em;
+    }
+    letter-spacing:2px;
+    line-height:4em;
+  }
+
+  /*主题部分*/
+
+  /*缩小后布局*/
+  aside{
+    @include length(95%,70%);
+    margin:0 auto;
+    display:none;
+    dl{
+      @include length(48%,44%);
+      background:#000;
+      float:left;
+      margin:0 2% 2% 0;
+      box-shadow: 4px 4px 4px #000;
+      dt{
+        height:3em;
+        font-size:26px;
+        color:#CCFFFF;
+        @include lineheight(3em,center);
+      }
+      dd{
+        color:#CCC;
+        font-size:18px;
+        @include lineheight(30px,center);
+      }
+    }
+
+  }
+  section{
+    width:100%;
+    min-height:80%;
+    margin:0 auto;
+    /*标题*/
+    h2 {
+      height: 2em;
+      text-align: left;
+      color: cornflowerblue;
+      line-height:2em;
+      margin-left:4em;
+      text-shadow:4px 4px 3px #ccc;
+      font:{
+        size: 2em;
+        weight: 400;
+      }
+    }
+
+    /*主体内容*/
+    ol {
+      position: relative;
+      margin:0 auto;
+      width:124em;
+      height:80%;
+      li {
+        position: absolute;
+        background-color: #eeeeee;
+        @include length(11em,11em);
+        text-shadow:3px 3px 2px #ccc;
+        border-radius: 50%;
+        text-align: center;
+        word-break:break-all;
+        font:{
+          size:16px;
+          weight:700;
+        }
+        @include transition(all 1s);
+        &:hover{
+          @include scale(1.2);
+          z-index:2;
+          background-color: #ffff00;
+          strong{
+            color:#660066;
+          }
+        }
+        strong{
+          display: block;
+          @include length(100%,1em);
+          text-align: center;
+          @include position( absolute,0,5em );
+        }
+      }
+    }
+  }
+}
+/*第二页响应式*/
+
+@media all and (min-width:970px) and (max-width:1770px) {
+  #section_1{
+    section{
+      display:none;
+    }
+    aside{
+      display:block;
+      width:80%;
+      position:absolute;
+      left:10%;
+      top:20%;
+      dl{
+        width:48%;
+        @include transition(all 1s);
+        &:hover{
+          @include scale(1.2);
+          background-color: beige;
+          dd{
+            color:navy;
+          }
+        }
+        dt{
+          font-size:25px;
+          font-weight:bold;
+          text-shadow: 2px 2px 2px #666;
+        }
+        dd{
+          font-size:20px;
+          height:2em;
+          line-height: 2em;
+        }
+      }
+    }
+  }
+}
+@media all and (min-width:768px) and (max-width:970px) {
+  #section_1{
+    section{
+      display:none;
+    }
+    aside{
+      display:block;
+      width:80%;
+      position:absolute;
+      left:10%;
+      top:20%;
+      dl{
+          @include transition(all 1s);
+          &:hover {
+            @include scale(1.2);
+            background-color: beige;
+            dd {
+              color: lightsalmon;
+            }
+          }
+      }
+    }
+  }
+}
+
+@media all and (min-width:568px) and (max-width:768px) {
+  #section_1{
+    h1{
+      height:3em;
+      line-height: 3em;
+      font-size: 3em;
+    }
+    section{
+      display:none;
+    }
+    aside{
+      display:block;
+      width:80%;
+      position:absolute;
+      left:10%;
+      top:20%;
+        dl{
+          @include transition(all 1s);
+          &:hover {
+            @include scale(1.2);
+            background-color: beige;
+            dd {
+              color: lightsalmon;
+            }
+          }
+        }
+    }
+  }
+
+}
+@media all and (max-width:568px) {
+
+  #section_1{
+    h1{
+      height:3em;
+      line-height: 3em;
+      font-size:2em;
+    }
+    section{
+      display:none;
+    }
+    aside{
+      display:block;
+      width:80%;
+      position:absolute;
+      left:10%;
+      top:20%;
+       dl{
+          height:40%;
+          dt{
+            font-size:1.5em;
+          }
+          dd{
+            font-size:1em;
+            line-height:1.6em;
+          }
+       }
+    }
+  }
+}
+
+
+/*第三页轮播*/
+/*遮罩*/
+
+#Mark{
+  overflow: hidden;
+  .close{
+    position: absolute;
+    top:5%;
+    right:5%;
+    background:#fff;
+    @include length(1.5em,1.5em);
+    color:#660066;
+    @include lineheight(1.5em,center);
+    z-index:1000;
+    &:hover{
+      background-color: #CCFFFF;
+      color:#FF3366;
+    }
+    font:{
+      size:30px;
+      weight:700;
+    }
+  }
+
+  figure{
+    width:100%;
+    height:100%;
+    @include length(100%,100%);
+    display:none;
+    z-index:999;
+    &.active{
+    display: block;
+    }
+   @include absolute;
+    background-color: rgba(0,0,0,0.8);
+
+    figcaption{
+      p{
+        height:1.5em;
+        color:#fff;
+        font-size:30px;
+        @include lineheight(1.5em,center);
+        margin-top:1em;
+      }
+    }
+    img{
+      display: block;
+      width:80%;
+      height:80%;
+      @include length(80%,80%);
+      border:5px solid #000;
+      @include position(absolute,10%,10%);
+      z-index:1000;
+    }
+  }
+}
+
+
+
+/*第三页*/
+#section_2{
+  background: $section-bgc;
+  @include Linear-gradient( top right,#00CCFF,#99FF33 );
+  /*标题部分*/
+  h1{
+    @include length(100%,3em);
+    font-size:3em;
+    font-weight:700;
+    @include lineheight(3em,center);
+    color: #130E4A;
+    text-shadow:3px 3px 2px #ccc;
+  }
+  /*轮播图*/
+
+  /*按钮区域*/
+  .img_show{
+    position:relative;
+    @include length(60%,80%);
+    margin:0 auto;
+    overflow:hidden;
+    ol{
+      position: absolute;
+      left:50%;
+      bottom:10%;
+      @include length(15em,2em);
+      margin-left:-7.5em;
+      li{
+        @include length(1.5em,1.5em);
+        margin-right:1em;
+        background-color: #cccccc;
+        float:left;
+        border-radius: 50%;
+        box-shadow: 2px 2px 2px #000;
+        &.active{
+          background:#ffff00;
+        }
+      }
+    }
+  }
+
+  /*图区域*/
+  ul{
+    @include absolute;
+    @include length(500%,80%);
+    li{
+      width:20%;
+      height:100%;
+      padding:1em 2em;
+      box-sizing: border-box;
+      float: left;
+      border:5px solid #eeeeee;
+      box-shadow: 2px 2px 2px #000;
+      border-radius: 10px;
+
+      h3{
+        width:50%;
+        height:3em;
+        color:#FFFFCC;
+        letter-spacing: 1px;
+        line-height: 3em;
+        float: left;
+        font:{
+          size:26px;
+          weight:700;
+        }
+      }
+      h4{
+        width:50%;
+        height:3em;
+        line-height:3em;
+        float: right;
+        font-size:26px;
+        color: brown;
+        text-align: right;
+        a{
+          color:#130E4A;
+          font-weight:bold;
+        }
+      }
+      /*具体每张图片及文字介绍*/
+      section{
+        @include length(100%,60%);
+        padding-top:1em;
+        figure{
+          @include length(100%,100%);
+          img{
+            display: block;
+            width:80%;
+            height:100%;
+            border:5px solid #eeeeee;
+            margin:0 auto;
+            border-radius: 10px;
+          }
+          figcaption{
+            display: block;
+            width:100%;
+            h2{
+              height:20%;
+              line-height:1.5em;
+              color: #CCFFFF;
+              margin-top:2%;
+              font:{
+                weight:700;
+                size:1.5em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+/*第三页响应式*/
+
+@media all and (min-width:970px) and (max-width:1770px) {
+  #section_2 h1{
+    @include lineheight(3em,center);
+    height:3em;
+    font-size:2.4em; ;
+  }
+  #section_2 ul li{
+    padding:1em 1.6em;
+  }
+  #section_2 ul li h3,#section_2 ul li h4{
+    height:2em;
+    line-height:2em;
+    font-size:20px;
+  }
+  #section_2 ul li section figure figcaption h2 {
+    font-size:16px;
+    line-height:1.8em;
+    margin-top:1em;
+  }
+}
+
+@media all and (min-width:768px) and (max-width:970px) {
+  #section_2 h1{
+    height:3em;
+    font-size:2.2em;
+    @include lineheight(3em,center);
+  }
+  #section_2 .img_show{
+    width:90%;
+  }
+ #section_2 ul li h3,#section_2 ul li h4 {
+   font-size: 1.5em;
+   height:1.8em;
+   line-height: 1.8em;
+ }
+
+#section_2 ul li section figure figcaption h2 {
+  font-size:16px;
+  line-height:1.3em;
+  margin-top:1em;
+  letter-spacing: 1px;
+  color:#660066;
+}
+
+}
+
+@media all and (min-width:568px) and (max-width:768px) {
+
+  #section_2 h1{
+    height:4em;
+    line-height: 4em;
+    font-size:2em; ;
+  }
+  #section_2 .img_show{
+    width:90%;
+  }
+  #section_2 ul li h3,#section_2 ul li h4{
+    font-size: 20px;
+    height: 1em;
+    line-height: 1em;
+  }
+  #section_2 ul li section figure figcaption h2 {
+    font-size:14px;
+    line-height:1.3em;
+    margin-top:1em;
+    color:#000;
+  }
+}
+@media all and (max-width:568px) {
+
+  #section_2 h1{
+    height:4em;
+    line-height: 4em;
+    font-size:1.8em; ;
+  }
+  #section_2 .img_show{
+    width:90%;
+  }
+  #section_2 ul li{
+    height:80%;
+  }
+  #section_2 ul li header{
+    line-height:2em;
+    height:2em;
+  }
+  #section_2 ul li h3,#section_2 ul li h4{
+    font-size: 16px;
+    line-height: 1.4em;
+    height: 1.4em;
+  }
+  #section_2 ul li section figure{
+    padding-top:1em;
+  }
+  #section_2 ul li section figure img{
+    @include length(100%,100%);
+  }
+  #section_2 ul li section figure figcaption h2 {
+    display:none;
+  }
+}
+
+/*第四页动画*/
+
+@keyframes TimeLine{
+  from{
+    width: 0;
+  }
+  to{
+    width: 100%;
+  }
+}
+
+
+/*第四页*/
+#section_3 {
+  background: $section-bgc;
+  @include Linear-gradient(top right, #FFFFCC, #660066);
+  /*底部时间轴*/
+  footer {
+    clear:both;
+    width:100%;
+    .hr {
+      position: absolute;
+      bottom: 15%;
+      @include length(100%,4px);
+      background: #660066;
+      @include animation(2s TimeLine ease-in);
+      .dot {
+        @include position(absolute,7%,50%);
+        margin-top: -0.75em;
+        @include length(1.5em,1.5em);
+        border-radius: 50%;
+        background-color: #ccc;
+        .timeline {
+          display: none;
+          padding: 1em;
+          @include length(18em,18em);
+          border-radius: 1em;
+          background-color: yellow;
+
+          @include position(absolute,50%,-22em);
+          margin-left: -10em;
+          box-shadow: 3px 3px 3px #666;
+          p {
+            height: 4em;
+            color: #666;
+            font-size: 20px;
+            line-height: 2em;
+            text-shadow: 2px 2px 2px #ccc;
+            letter-spacing: 1px;
+          }
+          h3 {
+            color: #00CCFF;
+            height: 50px;
+            @include lineheight(50px,center);
+            text-shadow: 2px 2px 2px #ccc;
+            border-bottom: 2px solid #ccc;
+            font: {
+              size: 20px;
+              weight: bold
+            }
+          }
+
+          /*三角形*/
+          &:after {
+            content: "";
+            position: absolute;
+            border: 12px solid;
+            border-color: yellow transparent transparent transparent;
+            left: 50%;
+            bottom: -24px;
+            height: 0;
+            width: 0;
+            margin-left: -12px;
+          }
+        }
+
+        span {
+          display: block;
+          margin-top: 2em;
+          margin-left: -0.5em;
+          color: #fff;
+          font: {
+            size: 1.2em;
+            weight: 700;
+          }
+        ;
+
+        }
+        .inner_dot {
+          @include length(1em,1em);
+          border-radius: 50%;
+          @include position(absolute,50%,50%);
+          margin-top: -0.5em;
+          margin-left: -0.5em;
+          background-color: #CCFFFF;
+        }
+      }
+      .dot:nth-child(2) {
+        left: 25%;
+      }
+      .dot:nth-child(3) {
+        left: 45%;
+      }
+      .dot:nth-child(4) {
+        left: 65%;
+      }
+      .dot:nth-child(5) {
+        left: 85%;
+      }
+    }
+
+  }
+
+  /*名片*/
+  section {
+    @include length(80%,100%);
+    position: relative;
+    margin: 0 auto;
+    header {
+      h1 {
+        font-size: 4em;
+        @include lineheight(2em,center);
+        color: #ffff00;
+        height: 2em;
+        border-bottom: 4px solid #660066;
+        text-shadow: 4px 4px 4px #666;
+      }
+    }
+
+    article:last-child {
+      float: right;
+    }
+    article {
+      width: 50%;
+      display: block;
+      text-align: left;
+      float: left;
+
+      h2 {
+        font-size: 3em;
+        height: 3em;
+        color: #eeeeee;
+        font-weight: bold;
+        line-height: 3em;
+      }
+
+      ul {
+        width:100%;
+        li {
+          @include length(100%,4em);
+          line-height: 4em;
+          a {
+            display: block;
+            @include length(100%,2em);
+            color: #FFFFCC;
+            &:hover{
+              color:#CCFFFF;
+              @include scale(1.2);
+              @include Transform-origin(0% 0%);
+              @include transition(all 1s);
+            }
+            font: {
+              weight: bold;
+              size: 2em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*第三页响应式*/
+
+@media all and (min-width:970px) and (max-width:1770px) {
+
+
+#section_3 section article h2{
+   font-size: 2em;
+   line-height:2em;
+   height:2em;
+}
+  #section_3 section article ul li{
+    height:3.5em;
+    line-height:3.5em;
+      a{
+        font-size:1.6em;
+      }
+  }
+
+}
+
+@media all and (min-width:768px) and (max-width:970px) {
+
+  #section_3 section{
+    width:90%;
+  }
+  #section_3 section article h2{
+    font-size: 1.5em;
+    line-height:1.5em;
+    height:1.5em;
+  }
+  #section_3 section article ul li{
+    height:3em;
+    line-height:3em;
+    a{
+      font-size:1.6em;
+    }
+  }
+  #section_3 section header h1 {
+    font-size: 3em;
+    height:3em;
+    line-height: 3em;
+  }
+
+}
+
+@media all and (min-width:568px) and (max-width:768px) {
+
+  #section_3 section{
+    width:90%;
+  }
+
+  #section_3 section article h2{
+    font-size: 2em;
+    line-height:2em;
+    height:2em;
+  }
+  #section_3 section article ul li{
+    height:3em;
+    line-height:3em;
+    a{
+      font-size:1.2em;
+    }
+  }
+
+  #section_3 section header h1 {
+    font-size: 2.5em;
+  }
+
+}
+@media all and (max-width:568px) {
+  #section_3 section{
+    width:90%;
+  }
+  #section_3 section article{
+    float:none;
+    width:100%;
+  }
+  #section_3 section article h2{
+    font-size: 1.6em;
+    line-height:2em;
+    height:2em;
+  }
+  #section_3 section article ul li{
+    height:1.6em;
+    line-height:1.6em;
+    a{
+      font-size:1.1em;
+    }
+  }
+  #section_3 section header h1 {
+    font-size: 2.2em;
+    height:2em;
+  }
+  #section_3 section footer{
+    display: none;
+  }
+}
+/*第五页*/
+#section_4 {
+  background: $section-bgc;
+  @include Linear-gradient( top right,#ccc,#eeeeee );
+  position: relative;
+
+  section{
+    @include length(80%,80%);
+    background:#fffdef;
+    @include position(absolute,10%,10%);
+    border-radius: 1em;
+    box-shadow: 5px 5px 7px #000;
+
+    article{
+      width:100%;
+      footer{
+        width:100%;
+        h2{
+          font-weight:bold;
+          color:#666;
+          font-size:4em;
+          height:2em;
+          border-bottom:4px solid #ffff00;
+          @include lineheight(2em,center);
+        }
+        h3{
+          color:#666;
+          height:2.5em;
+          @include lineheight(2.5em,center);
+          font:{
+            weight:bold;
+            size:2em;
+          }
+        }
+      }
+      ul{
+        @include length(90em,15em);
+        margin:2em auto;
+        z-index:1000;
+        li{
+          float:left;
+          @include length(13em,13em);
+          background-color:#130E4A;
+          border-radius:50%;
+          margin-right:5em;
+          line-height: 13em;
+          @include transition(all 1s);
+          &:nth-child(1){
+            i{
+              background:url(../img/images/github.png) no-repeat center center;
+              background-size:60px 80px;
+            }
+          }
+          &:nth-child(2){
+            i{
+              background:url(../img/images/weibo.png) no-repeat center center;
+            }
+          }
+          &:hover{
+              @include scale(1.3);
+              background-color: #CCFFFF;
+              i{
+                color:#000;
+              }
+          }
+          a{
+            @include length(100%,100%);
+                i{
+                  display: block;
+                  @include length(100%,100%);
+                  background:none;
+                  font-size:8em;
+                  text-align: center;
+                  color:#eeeeee;
+                }
+          }
+        }
+      }
+    }
+  }
+  header{
+    height:9em;
+    line-height:9em;
+    h1{
+      font-size:5em;
+      font-weight:bold;
+      color: #000;
+      text-shadow: 4px 4px 4px #ccc;
+      text-align: center;
+    }
+  }
+}
+
+@media all and (min-width:970px) and (max-width:1770px) {
+
+  #section_4{
+      header {
+        h1 {
+          font-size: 3em;
+          color: #000;
+          text-shadow: 4px 4px 4px #ccc;
+          text-align: center;
+        }
+      }
+  }
+  #section_4 section article ul{
+    width:70em;
+  }
+  #section_4 section article ul li{
+      @include length(10em,10em);
+      margin-right:4em;
+      line-height:10em;
+      a{
+          i{
+            font-size:6em;
+          }
+       }
+  }
+}
+
+@media all and (min-width:768px) and (max-width:970px) {
+
+  #section_4{
+      header {
+          h1 {
+            font-size: 3em;
+            color: #000;
+            text-shadow: 4px 4px 4px #ccc;
+            text-align: center;
+          }
+      }
+  }
+
+  #section_4 section article ul{
+    width:55em;
+  }
+  #section_4 section article ul li{
+    width:8em;
+    height:8em;
+    margin-right:1em;
+    line-height:8em;
+    a{
+        i{
+          background-size:50px 60px;
+          font-size:3em;
+          text-align: center;
+          color:#eeeeee;
+        }
+    }
+  }
+
+}
+
+@media all and (min-width:568px) and (max-width:768px) {
+
+  aside{
+    display: none;
+  }
+  #section_4{
+    section{
+      height:50%;
+    }
+    header {
+      h1 {
+        font-size: 3em;
+        color: #000;
+        text-shadow: 4px 4px 4px #ccc;
+        text-align: center;
+      }
+    }
+  }
+
+  #section_4 section article footer h2{
+    font-size:2em;
+    height:2em;
+    line-height: 2em;
+  }
+  #section_4 section article footer h3{
+    line-height:3em;
+    height:3em;
+    font-size:1.8em;
+  }
+  #section_4 section article ul{
+    width:40em;
+    height:6em;
+    @include length(40em,6em);
+    margin:1em auto 2em;
+  }
+  #section_4 section article ul li{
+
+    @include length(6em,6em);
+    line-height:6em;
+    margin-right:2em;
+    &:nth-child(1){
+      i{
+        background-size:40px 50px;
+       }
+    }
+    &:nth-child(2){
+      i{
+        background-size:80px 80px;
+      }
+    }
+    a{
+      i{
+        font-size: 3em;
+      }
+    }
+  }
+}
+@media all and (max-width:568px) {
+
+  aside{
+    display: none;
+  }
+
+  #section_4{
+    header {
+      height:6em;
+      line-height:6em;
+      h1 {
+        font-size: 2.4em;
+        color: #000;
+        text-shadow: 4px 4px 4px #ccc;
+        text-align: center;
+      }
+    }
+    section{
+      @include length(90%,70%);
+      left:5%;
+    }
+  }
+  #section_4 section article ul{
+    @include length(5em,70%);
+    float:left;
+    margin:0 2em;
+
+  }
+  #section_4 section article ul li{
+
+    @include length(4em,4em);
+    float:none;
+    margin-bottom:0.5em;
+    &:nth-child(1){
+      i{
+        background-size:30px 35px;
+      }
+    }
+    &:nth-child(2){
+      i{
+        background-size:45px 45px;
+      }
+    }
+    a{
+      i{
+        font-size: 2em;
+        line-height:2em;
+      }
+    }
+  }
+  #section_4 section article footer
+  {
+    float:left;
+    width:60%;
+    min-height:15em;
+  }
+  #section_4 section article footer h2{
+
+    font-size:2em;
+    height:1.5em;
+    line-height: 1.5em;
+  }
+  #section_4 section article footer h3{
+
+    font-size: 1.2em;
+    @include lineheight(3em,left);
+    height:3em;
+    word-break: break-all;
+    border-bottom:3px solid #5BEFBB;
+  }
+}
+
+aside{
+  width:512px;
+  position:fixed;
+  left:-512px;
+  top:50%;
+  margin-top:-2em;
+  @include transition(all 1.6s);
+  time{
+    article{
+      ul{
+        li{
+          float: left;
+          width:4em;
+          height:4em;
+          text-align: center;
+          line-height: 4em;
+          background-color: #000;
+          color:#fff;
+          font:{
+            size:16px;
+            weight:700;
+          }
+        }
+      }
+    }
+  }
+  span{
+    display: block;
+    width:4em;
+    height:4em;
+    position:absolute;
+    top:0;
+    right:-4em;
+    text-align: center;
+    line-height:4em;
+    background-color: #FFFFCC;
+    @include transition(all 1s);
+    &:hover{
+      border-radius: 0.5em;
+    }
+    font:{
+      size:16px;
+      weight:700;
+    }
+  }
+
+}
+
+#section_0,
+#section_1,
+#section_2,
+#section_3,
+#section_4
+{
+  @include section;
+}
+
+
+
+
